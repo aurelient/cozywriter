@@ -10,10 +10,6 @@ html(lang="en")
     link(href='/css/zen.css', rel='stylesheet', type='text/css')
 
     //- libs
-    //- script(src="zenpen/js/libs/head.min.js")
-    //- script(src="zenpen/js/libs/FileSaver.min.js")
-    script(src="zenpen/js/libs/Blob.js")
-    script(src="zenpen/js/libs/fullScreen.js")  
 
   body
     .row
@@ -36,7 +32,7 @@ html(lang="en")
           | A guide is available here : 
           | Cozywriter is based on <a href="https://github.com/sofish/pen">pen</a> 
           | tweaked for cozy.io with some code from <a href="https://github.com/sofish/pen">zenpen</a>.
-          | The code is released under an <a href="http://www.apache.org/licenses/">Apache license</a>.
+          | The code is released under an MIT/X11 license.
 
         ul
         - for(note in notes) {
@@ -112,3 +108,5 @@ html(lang="en")
       //-     pen.destroy();
       //-   }
       //- });
+    script(src="zenpen/js/libs/Blob.js")
+    script(src="zenpen/js/libs/fullScreen.js")  
