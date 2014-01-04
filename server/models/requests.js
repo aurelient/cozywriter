@@ -4,7 +4,7 @@
 var americano = require('americano');
 
 module.exports = {
-  template: {
+  note: {
     // shortcut for emit doc._id, doc
     all: americano.defaultRequests.all,
 

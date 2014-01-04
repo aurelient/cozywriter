@@ -1,0 +1,114 @@
+doctype html
+html(lang="en")
+  head
+    //- meta(http-equiv='content-type', content='text/html;charset=UTF-8')
+    meta(charset='utf-8')
+    title Cozywriter
+    link(href='/css/favicon.ico', rel='shortcut icon', type='image/x-icon')
+    link(href='/css/foundation.css', rel='stylesheet', type='text/css')
+    link(href='/css/pen.css', rel='stylesheet', type='text/css')
+    link(href='/css/zen.css', rel='stylesheet', type='text/css')
+
+    //- libs
+    //- script(src="zenpen/js/libs/head.min.js")
+    //- script(src="zenpen/js/libs/FileSaver.min.js")
+    script(src="zenpen/js/libs/Blob.js")
+    script(src="zenpen/js/libs/fullScreen.js")  
+
+  body
+    .row
+      nav.small-2.columns(role='navigation').overlay
+        h1 Cozywriter
+        .ui#toolbar
+          button(class="fullscreen useicons",title="Toggle fullscreen") &#xf110;
+          button(class="color-flip useicons",title="Invert colors") &#xf134;
+          button(class="upload useicons",title="Upload to cozy") &#xf20b;
+          button(class="savebutton useicons",title="Download") &#xf143;
+          //- button(class="info useicons",title="More information")&#xf15e;
+          button(class="about useicons",title="More information") &#xf15e;
+          //- TODO: Guide, licence, githubs
+          //- button(class="target useicons",title="Set target word count") &#xe001;
+          //- span#icon-mode.mode
+          //- a#fullscreen fullscreen
+
+        p.description 
+          small
+          | A guide is available here : 
+          | Cozywriter is based on <a href="https://github.com/sofish/pen">pen</a> 
+          | tweaked for cozy.io with some code from <a href="https://github.com/sofish/pen">zenpen</a>.
+          | The code is released under an <a href="http://www.apache.org/licenses/">Apache license</a>.
+
+        ul
+        - for(note in notes) {
+            li
+                a(href=notes[note].url)= notes[note].title
+                | &nbsp;- (
+                a(href="delete/#{note}") delete
+                | )
+        - }
+        //- ul
+        //-   li: a(href='/about') About
+        
+        ul#stats
+          li#wordcount Word count : 
+            span#wordcount
+          li#charcount Char count : 
+            span#chartcount
+          li#timecount Time focused : 
+            span#timecount
+
+      .pen.small-7.large-7.large-offset-1.columns
+        #editor(data-toggle="pen", placeholder="im a placeholder").content
+          h2 Enjoy live editing (+markdown)
+          p: b: i: Click to edit, Select to apply effect, click items of toolbar to toggle effects.
+          hr
+          p Horizontal-Rule can be insert by click「...」on the toolbar or just type「... 」/「--- 」/「*** 」at line start. Note that there's a SPACE at the end of a command.
+
+          //- .ui.small-1.small-offset-1.columns
+          //- #toolbar
+          //- button(class="fullscreen useicons",title="Toggle fullscreen") &#xf110;
+          //- button(class="color-flip useicons",title="Invert colors") &#xf134;
+          //- button(class="upload useicons",title="Upload to cozy") &#xf20b;
+          //- button(class="download useicons",title="Download") &#xf143;
+          //- button(class="target useicons",title="Set target word count") &#xe001;
+          //- span#icon-mode.mode
+          //- a#fullscreen fullscreen
+
+      .reveal-modal#myModal(data-reveal) 
+        h2 Awesome. I have it.
+        p.lead Your couch. It is mine.
+        p Im a cool paragraph that lives inside of an even cooler modal. Wins
+        a.close-reveal-modal &#215;
+
+      footer
+
+    script(src="zenpen/js/utils.js")
+    script(src="zenpen/js/ui.js")  
+    //- script(src="zenpen/js/editor.js")  
+    script(src='/js/pen.js', type='text/javascript', charset='utf-8')
+    script(src='/js/markdown.js', type='text/javascript', charset='utf-8')
+    script.
+      // config
+      var options = {
+        editor: document.querySelector('[data-toggle="pen"]'),
+        debug: true
+      };
+
+      // create editor
+      var pen = new Pen(options);
+
+      // create ui hooks
+      ui.init();
+
+      // toggle editor mode
+      //- document.querySelector('#mode').addEventListener('click', function() {
+      //-   var text = this.textContent;
+
+      //-   if(this.classList.contains('disabled')) {
+      //-     this.classList.remove('disabled');
+      //-     pen.rebuild();
+      //-   } else {
+      //-     this.classList.add('disabled');
+      //-     pen.destroy();
+      //-   }
+      //- });
