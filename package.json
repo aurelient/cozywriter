@@ -1,10 +1,10 @@
 {
-  "name": "cozy-template-js",
+  "name": "CozyWriter",
   "version": "1.0.0",
   "engines": [
     "node = 0.8.x"
   ],
-  "description": "A template project for Cozy applications written in JavaScript",
+  "description": "A minimalist text / markdown editor for Cozy to focus on writing",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -31,5 +31,5 @@
     "start": "node server.js"
   },
   "cozy-permissions": {},
-  "cozy-displayName": "Template"
+  "cozy-displayName": "CozyWriter"
 }

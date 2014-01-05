@@ -1,6 +1,6 @@
 # Description
 
-CozyWriter is a text / markdown editor for Cozy, it is based on the [pen](https://github.com/sofish/pen) with some code 
+CozyWriter is a minimalist text / markdown editor for Cozy, it is based on the [pen](https://github.com/sofish/pen) with some code 
 from [zenpen](https://github.com/sofish/pen).
 
 The code is released under an MIT/X11 license
