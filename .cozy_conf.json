@@ -1,7 +1,7 @@
 {
     "cozy": {
         "appName": "cozywriter",
-        "url": "https://aurelientabard.cozycloud.cc/"
+        "url": "http://localhost:9104"
     },
     "github": {
         "user": "aurelient",
