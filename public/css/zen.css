@@ -16,12 +16,15 @@ body {
     background: #fdfdfd;
     color: #111;
 }
+.yin .pen, .yin .pen h1, .yin .pen h2, .yin .pen h3 { color: #111;font-family:Palatino, Optima, Georgia, serif;}
+
 
 .yang {
     background-color: #111;
     color: #fafafa;
 }
-
+.yang h1 {color: #fafafa;}
+.yang .pen, .yang .pen h1, .yang .pen h2, .yang .pen h3 { color: #fafafa;font-family:Palatino, Optima, Georgia, serif;}
 
 .row {
     max-width: 2000px;
@@ -29,6 +32,25 @@ body {
 
 nav {
     min-width: 220px;
+    opacity: 0.1;
+    height: 100%;
+
+    -webkit-transition: opacity 700ms;
+    -moz-transition: opacity 700ms;
+    -ms-transition: opacity 700ms;
+    -o-transition: opacity 700ms;
+    transition: opacity 700ms;
+}
+
+nav:hover {
+    opacity: 0.8;
+
+    -webkit-transition: opacity 700ms;
+    -moz-transition: opacity 700ms;
+    -ms-transition: opacity 700ms;
+    -o-transition: opacity 700ms;
+    transition: opacity 700ms;
+
 }
 
 nav ul {
@@ -45,6 +67,12 @@ nav a {
 
 nav h1 {
     font-size: 2.125rem;
+}
+
+.description {
+    font-size: small;
+    line-height: 1rem;
+    display: none;
 }
 
 #editor {
@@ -73,6 +101,7 @@ textarea {
 .ui {
   /*width: 60px;*/
   /*margin-left: 1.1rem;*/
+  opacity: 0.6;
   font-family: "foundation-icons";
   font-style: normal;
   font-weight: normal;
@@ -84,28 +113,22 @@ textarea {
   text-decoration: inherit;
 }
 
-.ui:hover button {
+/*.ui:hover button {
+    opacity: 0.9;
+}
+*/
+.ui button:hover {
     opacity: 0.4;
 }
 
-.ui button:hover {
-    opacity: 1;
-}
-
 .ui button, .text-options button {
-
-    -webkit-transition: opacity 400ms;
-    -moz-transition: opacity 400ms;
-    -ms-transition: opacity 400ms;
-    -o-transition: opacity 400ms;
-    transition: opacity 400ms;
 
     font-family: inherit;
     background: none;
     cursor: pointer;
     font-size: 25px;
     color: inherit;
-    opacity: 0.1;
+    /*opacity: 0.1;*/
     padding: 0px;
     height: 32px;
     width: 25px;

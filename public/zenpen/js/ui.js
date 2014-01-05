@@ -25,13 +25,16 @@ var ui = (function() {
 		
 		bindElements();
 
+		saveFormat = 'markdown';
+
 		wordCountActive = false;
 
 		if ( supportsHtmlStorage() ) {
 			loadState();
+		} else {
+			document.body.className = 'yin';
 		}
 		
-		console.log( "Checkin under the hood eh? We've probably got a lot in common. You should totally check out ZenPen on github! (https://github.com/tholman/zenpen)." );
 	}
 
 	function loadState() {
@@ -39,7 +42,7 @@ var ui = (function() {
 		// Activate word counter
 		if ( localStorage['wordCount'] && localStorage['wordCount'] !== "0") {			
 			wordCountValue = parseInt(localStorage['wordCount']);
-			wordCountElement.value = localStorage['wordCount'];
+			// wordCountElement.value = localStorage['wordCount'];
 			wordCounter.className = "word-counter active";
 			updateWordCount();
 		} else {
@@ -54,6 +57,8 @@ var ui = (function() {
 				document.body.className = 'yin';
 			}
 			darkLayout = !darkLayout;
+		} else {
+				document.body.className = 'yin';
 		}
 
 	}
@@ -62,7 +67,7 @@ var ui = (function() {
 
 		if ( supportsHtmlStorage() ) {
 			localStorage[ 'darkLayout' ] = darkLayout;
-			localStorage[ 'wordCount' ] = wordCountElement.value;
+			// localStorage[ 'wordCount' ] = wordCountElement.value;
 		}
 	}
 
@@ -156,15 +161,30 @@ var ui = (function() {
 	function onTargetClick( event ) {
 		overlay.style.display = "block";
 		wordCountBox.style.display = "block";
-		wordCountElement.focus();
+		// wordCountElement.focus();
 	}
 
 	function onAboutButtonClick( event ) {
-		overlay.style.display = "block";
-		descriptionModal.style.display = "block";
+		if (descriptionModal.style.display == "block") {
+			descriptionModal.style.display = "none";
+		}
+		else {
+			descriptionModal.style.display = "block";
+		}
 	}
 	
 	function saveText( event ) {
+		// Modified from zenpen 
+		var saveFormat = 'markdown';
+		
+		var headerText = "";
+		
+		var body = document.querySelector('#editor.content');
+		var bodyText = body.innerHTML;
+		console.log(bodyText);
+			
+		textToWrite = formatText(saveFormat,headerText,bodyText);
+		console.log(textToWrite);
 
 		if (typeof saveFormat != 'undefined' && saveFormat != '') {
 			var blob = new Blob([textToWrite], {type: "text/plain;charset=utf-8"});
@@ -259,16 +279,22 @@ var ui = (function() {
 			
 		targ.className ='activesave';
 		
-		saveFormat = targ.getAttribute('data-format');
+		// Modified from zenpen to only save to markdown
+		saveFormat = 'markdown'; //targ.getAttribute('data-format');
 		
-		var header = document.querySelector('header.header');
-		var headerText = header.innerHTML.replace(/(\r\n|\n|\r)/gm,"") + "\n";
+		// Modified from zenpen to ignore header
+		var header = "";
+		// var header = document.querySelector('header.header');
+		// var headerText = header.innerHTML.replace(/(\r\n|\n|\r)/gm,"") + "\n";
 		
-		var body = document.querySelector('article.content');
+		var body = document.querySelector('#editor.content');
 		var bodyText = body.innerHTML;
+		console.log(bodyText);
 			
 		textToWrite = formatText(saveFormat,headerText,bodyText);
-		
+		console.log(textToWrite);
+
+
 		var textArea = document.querySelector('.hiddentextbox');
 		textArea.value = textToWrite;
 		textArea.focus();
@@ -297,26 +323,31 @@ var ui = (function() {
 				text = text.replace(/<b>|<\/b>/g,"**")
 					.replace(/\r\n+|\r+|\n+|\t+/ig,"")
 					.replace(/<i>|<\/i>/g,"_")
+					.replace(/<h2>|<\/h2>/g,"## ")
+					.replace(/<h3>|<\/h3>/g,"### ")
 					.replace(/<blockquote>/g,"> ")
 					.replace(/<\/blockquote>/g,"")
 					.replace(/<p>|<\/p>/gi,"\n")
+					.replace(/<hr>/g,"\n --- \n")
 					.replace(/<br>/g,"\n");
 				
 				var links = text.match(/<a href="(.+)">(.+)<\/a>/gi);
-				
-				for ( var i = 0; i<links.length; i++ ) {
-					var tmpparent = document.createElement('div');
-					tmpparent.innerHTML = links[i];
-					
-					var tmp = tmpparent.firstChild;
-					
-					var href = tmp.getAttribute('href');
-					var linktext = tmp.textContent || tmp.innerText || "";
-					
-					text = text.replace(links[i],'['+linktext+']('+href+')');
+				if (links != null) {			
+					for ( var i = 0; i<links.length; i++ ) {
+						var tmpparent = document.createElement('div');
+						tmpparent.innerHTML = links[i];
+						
+						var tmp = tmpparent.firstChild;
+						
+						var href = tmp.getAttribute('href');
+						var linktext = tmp.textContent || tmp.innerText || "";
+						
+						text = text.replace(links[i],'['+linktext+']('+href+')');
+					}
 				}
 				
-				text = header +"\n\n"+ text;
+
+				// text = header +"\n\n"+ text;
 			break;
 
 			case 'plain':
@@ -361,7 +392,8 @@ var ui = (function() {
 	}
 
 	return {
-		init: init
+		init: init,
+		formatText: formatText
 	}
 
 })();
