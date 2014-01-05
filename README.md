@@ -1,19 +1,10 @@
 # Description
 
-Cozy Template is a Javascript template project to start quickly your own 
-application.
+CozyWriter is a text / markdown editor for Cozy, it is based on the [pen](https://github.com/sofish/pen) with some code 
+from [zenpen](https://github.com/sofish/pen).
 
-Do you feel lost? No problem, check out our tutorial to get your started: 
-http://cozy.io/hack/getting-started/
+The code is released under an MIT/X11 license
 
-# Run
-
-Clone this repository, install dependencies and run server (it requires Node.js)
-
-    git clone git://github.com/mycozycloud/cozy-template-js.git
-    cd cozy-template-js
-    npm install
-    node server.js
 
 # About Cozy
 
