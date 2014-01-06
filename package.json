@@ -13,10 +13,9 @@
   "main": "server.js",
   "css": "public/css/",
   "dependencies": {
-    "americano": "0.2.10",
-    "americano-cozy": "0.1.4",
     "express": "~3.4.7",
     "jugglingdb": "~0.2.6",
+    "jugglingdb-cozy-adapter": "0.4.4",
     "jade": "~1.0.2"
   },
   "devDependencies": {
@@ -31,5 +30,9 @@
     "start": "node server.js"
   },
   "cozy-permissions": {},
-  "cozy-displayName": "CozyWriter"
+  "cozy-displayName": "CozyWriter",
+  "cozy-permissions": {
+  "notes": {
+    "description": "This application will create Markdown notes"
+  }
 }
