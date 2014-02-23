@@ -10,7 +10,7 @@ app.configure(function() {
     app.set('views', __dirname + '/client');
     app.engine('.html', require('jade').__express);
     
-    app.use(express.static(__dirname + '/public'));
+    app.use(express.static(__dirname + '/client/public'));
 
     // Allows express to get data from POST requests
     app.use(express.bodyParser());
